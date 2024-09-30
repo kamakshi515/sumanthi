@@ -1,0 +1,26 @@
+from sklearn.tree import DecisionTreeClassifer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+import pandas as pd
+data = pd.read_csv('data.csv')
+encoder = {}
+for column in data.columns[:-1]:
+    encoders[column]=LabelEncoder().fit(data[column])
+for column in data.columns[:-1]:
+    data[column]=encoders[column].transfrom(data[column])
+X=data.drop('playgolf')
+y=target['play golf']
+target_encoder=Labelencoder()
+y=target.encoder.fit_trasnform(y)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+clf=DecisionTreeClassifier(criterion="entropy",random_state=42)
+clf.fit(x_train,y_train)
+y_pred=clf.predict(x_test)
+print(f"Hi,3cse,Accuracy on test set:{clf.score(x_test,y+test)}")
+new_sample_data=['sunny','hot','high','weak']
+new_sample_encoded=[encoders[column].transfrom([value])[0] for column,value in zip(x.columns,new+sample_data)]
+new_sample_encoded=pd.DataFrame([new_sample_encoded],columns=x.columns)
+new_sample_prediction_encoded=clf.predict(new_sample_encoded)
+new_sample_prediction=target_encoder.inverse_transfrom(new_sample_prediction_encoded)
+print(f"Prediction for new sample:{new_sample_prediction[0]}")
+print("************DEMO************")
